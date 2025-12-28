@@ -194,7 +194,7 @@ export default function DashboardPage() {
       <div>
         <h1 className="text-3xl font-bold text-gray-100">Dashboard</h1>
         <p className="text-gray-400 mt-2">
-          Welcome to your stock prediction manager
+          Welcome to Financier
         </p>
       </div>
 

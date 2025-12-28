@@ -1,6 +1,6 @@
 # Database Query Layer
 
-Complete database abstraction layer for the Prediction Manager app using Cloudflare D1.
+Complete database abstraction layer for Financier using Cloudflare D1.
 
 ## Overview
 
@@ -287,10 +287,10 @@ await queryD1('SELECT * FROM users WHERE id = ?', [userId]);
 
 ```bash
 # Apply migrations to local D1 database
-wrangler d1 migrations apply prediction-manager-db --local
+wrangler d1 migrations apply financier-db --local
 
 # Apply migrations to production
-wrangler d1 migrations apply prediction-manager-db
+wrangler d1 migrations apply financier-db
 ```
 
 ## Testing

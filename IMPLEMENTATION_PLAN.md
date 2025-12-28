@@ -1,4 +1,4 @@
-# Stock Prediction Manager - Implementation Plan
+# Financier - Implementation Plan
 
 ## Architecture Overview
 
@@ -129,7 +129,7 @@ All API routes use edge runtime: `export const runtime = 'edge';`
 ## Project Structure
 
 ```
-prediction-manager/
+financier/
 ├── app/
 │   ├── (auth)/
 │   │   ├── sign-in/[[...sign-in]]/page.tsx
@@ -218,7 +218,7 @@ prediction-manager/
 
 1. Initialize Next.js project
    ```bash
-   npx create-next-app@latest prediction-manager --typescript --tailwind --app
+   npx create-next-app@latest financier --typescript --tailwind --app
    ```
 
 2. Install core dependencies
@@ -265,7 +265,7 @@ prediction-manager/
 
 1. Create D1 database
    ```bash
-   wrangler d1 create prediction-manager-db
+   wrangler d1 create financier-db
    ```
 
 2. Write migrations
@@ -275,7 +275,7 @@ prediction-manager/
 
 3. Run migrations
    ```bash
-   wrangler d1 execute prediction-manager-db --file=./lib/db/migrations/0001_initial.sql --local
+   wrangler d1 execute financier-db --file=./lib/db/migrations/0001_initial.sql --local
    ```
 
 4. Create D1 client wrapper (`lib/db/client.ts`)
@@ -679,10 +679,10 @@ Holdings automatically recalculated on next portfolio view
 
 3. **Production D1 Database**
    ```bash
-   wrangler d1 create prediction-manager-db-prod
-   wrangler d1 execute prediction-manager-db-prod --file=./lib/db/migrations/0001_initial.sql
-   wrangler d1 execute prediction-manager-db-prod --file=./lib/db/migrations/0002_add_rules.sql
-   wrangler d1 execute prediction-manager-db-prod --file=./lib/db/migrations/0003_add_stock_cache.sql
+   wrangler d1 create financier-db-prod
+   wrangler d1 execute financier-db-prod --file=./lib/db/migrations/0001_initial.sql
+   wrangler d1 execute financier-db-prod --file=./lib/db/migrations/0002_add_rules.sql
+   wrangler d1 execute financier-db-prod --file=./lib/db/migrations/0003_add_stock_cache.sql
    ```
 
 4. **Clerk Production Setup**
@@ -730,12 +730,12 @@ module.exports = nextConfig;
 
 ### `wrangler.toml`
 ```toml
-name = "prediction-manager"
+name = "financier"
 compatibility_date = "2024-01-01"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "prediction-manager-db"
+database_name = "financier-db"
 database_id = "YOUR_DATABASE_ID"
 ```
 

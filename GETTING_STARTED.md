@@ -1,6 +1,6 @@
-# Getting Started - Stock Prediction Manager
+# Getting Started - Financier
 
-Get your Stock Prediction Manager up and running in 10 minutes! This guide will help you set up the app locally for development.
+Get your Financier app up and running in 10 minutes! This guide will help you set up the app locally for development.
 
 ## Prerequisites
 
@@ -18,7 +18,7 @@ Before you begin, make sure you have:
 1. Go to [clerk.com](https://clerk.com/) and sign up
 2. Create a new application:
    - Click **"Create Application"**
-   - Name: "Stock Prediction Manager - Dev"
+   - Name: "Financier - Dev"
    - Enable **Email** authentication
    - Click **"Create Application"**
 3. Copy your API keys from the dashboard:
@@ -39,8 +39,8 @@ Before you begin, make sure you have:
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/prediction-manager.git
-cd prediction-manager
+git clone https://github.com/YOUR_USERNAME/financier.git
+cd financier
 
 # Install dependencies
 npm install
@@ -88,7 +88,7 @@ Your app uses Cloudflare D1 (SQLite database). Let's set it up:
 
 2. **Create local database:**
    ```bash
-   npx wrangler d1 create prediction-manager-db
+   npx wrangler d1 create financier-db
    ```
 
    Copy the `database_id` from the output.
@@ -98,15 +98,15 @@ Your app uses Cloudflare D1 (SQLite database). Let's set it up:
    ```toml
    [[d1_databases]]
    binding = "DB"
-   database_name = "prediction-manager-db"
+   database_name = "financier-db"
    database_id = "abc123-your-id-here"  # Replace this!
    ```
 
 4. **Run database migrations:**
    ```bash
-   npx wrangler d1 execute prediction-manager-db --file=./lib/db/migrations/0001_initial.sql --local
-   npx wrangler d1 execute prediction-manager-db --file=./lib/db/migrations/0002_add_rules.sql --local
-   npx wrangler d1 execute prediction-manager-db --file=./lib/db/migrations/0003_add_recommendations.sql --local
+   npx wrangler d1 execute financier-db --file=./lib/db/migrations/0001_initial.sql --local
+   npx wrangler d1 execute financier-db --file=./lib/db/migrations/0002_add_rules.sql --local
+   npx wrangler d1 execute financier-db --file=./lib/db/migrations/0003_add_recommendations.sql --local
    ```
 
 Each command should show "✅ Successfully executed" message.
@@ -278,18 +278,18 @@ Next.js has hot reload - just save files and see changes instantly!
 
 To see your database contents:
 ```bash
-npx wrangler d1 execute prediction-manager-db --command="SELECT * FROM users;" --local
-npx wrangler d1 execute prediction-manager-db --command="SELECT * FROM transactions;" --local
-npx wrangler d1 execute prediction-manager-db --command="SELECT * FROM rules;" --local
+npx wrangler d1 execute financier-db --command="SELECT * FROM users;" --local
+npx wrangler d1 execute financier-db --command="SELECT * FROM transactions;" --local
+npx wrangler d1 execute financier-db --command="SELECT * FROM rules;" --local
 ```
 
 ### Clear Database
 
 To start fresh:
 ```bash
-npx wrangler d1 execute prediction-manager-db --command="DELETE FROM transactions;" --local
-npx wrangler d1 execute prediction-manager-db --command="DELETE FROM rules;" --local
-npx wrangler d1 execute prediction-manager-db --command="DELETE FROM recommendations;" --local
+npx wrangler d1 execute financier-db --command="DELETE FROM transactions;" --local
+npx wrangler d1 execute financier-db --command="DELETE FROM rules;" --local
+npx wrangler d1 execute financier-db --command="DELETE FROM recommendations;" --local
 ```
 
 ### TypeScript Errors

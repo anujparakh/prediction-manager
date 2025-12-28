@@ -5,7 +5,7 @@ import { Toaster } from '@/components/ui/sonner';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Stock Prediction Manager',
+  title: 'Financier',
   description: 'Manage stock predictions based on custom rules',
 };
 

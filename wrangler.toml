@@ -1,4 +1,4 @@
-name = "prediction-manager"
+name = "financier"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
 main = ".open-next/worker.js"
@@ -12,12 +12,12 @@ binding = "ASSETS"
 # D1 Database bindings
 [[d1_databases]]
 binding = "DB"
-database_name = "prediction-manager-db"
+database_name = "financier-db"
 database_id = "b35f5c14-262f-477c-bf70-cc698cc355c0"
 
 # Production environment
 [env.production]
 [[env.production.d1_databases]]
 binding = "DB"
-database_name = "prediction-manager-db-prod"
-database_id = "7572103e-314c-4b74-9a6d-e477eb3ccc3d" # Will be filled after creating production database
+database_name = "financier-db-prod"
+database_id = "edf973dc-07f7-48fd-8e0a-156445c1f6c4"

@@ -1,6 +1,6 @@
-# Deployment Guide - Stock Prediction Manager
+# Deployment Guide - Financier
 
-This guide will walk you through deploying your Stock Prediction Manager app to Cloudflare using OpenNext.
+This guide will walk you through deploying your Financier app to Cloudflare using OpenNext.
 
 ## Table of Contents
 - [Prerequisites](#prerequisites)
@@ -64,7 +64,7 @@ This runs your app with Wrangler which provides access to your local D1 database
 
 1. Go to [Clerk Dashboard](https://dashboard.clerk.com/)
 2. Click **"Create Application"**
-3. Name it: `Stock Prediction Manager - Production`
+3. Name it: `Financier - Production`
 4. Choose authentication methods:
    - ✅ Email
    - ✅ Google (optional)
@@ -129,16 +129,16 @@ This will open a browser window to authenticate with Cloudflare.
 ### 3.2 Create Production Database
 
 ```bash
-wrangler d1 create prediction-manager-db-prod
+wrangler d1 create financier-db-prod
 ```
 
 **Output:**
 ```
-✅ Successfully created DB 'prediction-manager-db-prod'!
+✅ Successfully created DB 'financier-db-prod'!
 
 [[d1_databases]]
 binding = "DB"
-database_name = "prediction-manager-db-prod"
+database_name = "financier-db-prod"
 database_id = "abc123-your-database-id-here"
 ```
 
@@ -149,20 +149,20 @@ database_id = "abc123-your-database-id-here"
 Open `wrangler.toml` and update the production database ID:
 
 ```toml
-name = "prediction-manager"
+name = "financier"
 compatibility_date = "2024-01-01"
 main = ".open-next/worker.js"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "prediction-manager-db"
+database_name = "financier-db"
 database_id = "your-local-db-id"  # Keep your local one
 
 # Production environment
 [env.production]
 [[env.production.d1_databases]]
 binding = "DB"
-database_name = "prediction-manager-db-prod"
+database_name = "financier-db-prod"
 database_id = "abc123-your-prod-id-here"  # Replace with production ID
 ```
 
@@ -172,18 +172,18 @@ Run each migration in order against your **production** database:
 
 ```bash
 # Migration 1: Initial schema (users, transactions)
-wrangler d1 execute prediction-manager-db-prod --file=./lib/db/migrations/0001_initial.sql
+wrangler d1 execute financier-db-prod --file=./lib/db/migrations/0001_initial.sql
 
 # Migration 2: Rules table
-wrangler d1 execute prediction-manager-db-prod --file=./lib/db/migrations/0002_add_rules.sql
+wrangler d1 execute financier-db-prod --file=./lib/db/migrations/0002_add_rules.sql
 
 # Migration 3: Recommendations table
-wrangler d1 execute prediction-manager-db-prod --file=./lib/db/migrations/0003_add_recommendations.sql
+wrangler d1 execute financier-db-prod --file=./lib/db/migrations/0003_add_recommendations.sql
 ```
 
 **Verify migrations:**
 ```bash
-wrangler d1 execute prediction-manager-db-prod --command="SELECT name FROM sqlite_master WHERE type='table';"
+wrangler d1 execute financier-db-prod --command="SELECT name FROM sqlite_master WHERE type='table';"
 ```
 
 Expected output:
@@ -224,7 +224,7 @@ wrangler deploy
 1. Confirm the worker name
 2. Set up your workers.dev subdomain
 
-Your app will be deployed to: `https://prediction-manager.your-subdomain.workers.dev`
+Your app will be deployed to: `https://financier.your-subdomain.workers.dev`
 
 ### 4.3 Alternative: Deploy via GitHub Actions
 
@@ -295,7 +295,7 @@ wrangler secret put NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL
 # Enter: /
 
 wrangler secret put NEXT_PUBLIC_APP_URL
-# Enter your worker URL: https://prediction-manager.your-subdomain.workers.dev
+# Enter your worker URL: https://financier.your-subdomain.workers.dev
 ```
 
 ### 5.2 Alternative: Use wrangler.toml
@@ -308,7 +308,7 @@ NEXT_PUBLIC_CLERK_SIGN_IN_URL = "/sign-in"
 NEXT_PUBLIC_CLERK_SIGN_UP_URL = "/sign-up"
 NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL = "/"
 NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL = "/"
-NEXT_PUBLIC_APP_URL = "https://prediction-manager.your-subdomain.workers.dev"
+NEXT_PUBLIC_APP_URL = "https://financier.your-subdomain.workers.dev"
 ```
 
 **Never** put secret keys in wrangler.toml!
@@ -317,7 +317,7 @@ NEXT_PUBLIC_APP_URL = "https://prediction-manager.your-subdomain.workers.dev"
 
 ### 6.1 Check Deployment
 
-Visit your worker URL: `https://prediction-manager.your-subdomain.workers.dev`
+Visit your worker URL: `https://financier.your-subdomain.workers.dev`
 
 ### 6.2 Test Core Features
 
@@ -419,7 +419,7 @@ npm run pages:build
 **Solution:**
 1. Verify migrations ran successfully:
    ```bash
-   wrangler d1 execute prediction-manager-db-prod --command="SELECT COUNT(*) FROM users;"
+   wrangler d1 execute financier-db-prod --command="SELECT COUNT(*) FROM users;"
    ```
 2. Check database binding name is exactly `DB` in wrangler.toml
 3. Redeploy after fixing configuration
@@ -549,4 +549,4 @@ After successful deployment:
 5. Execute trades and mark as done
 6. Track portfolio performance
 
-Congratulations! Your Stock Prediction Manager is now live on Cloudflare! 🎉
+Congratulations! Your Financier app is now live on Cloudflare! 🎉

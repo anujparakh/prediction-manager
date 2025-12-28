@@ -1,4 +1,4 @@
-# Stock Prediction Manager
+# Financier
 
 A full-stack web application for managing stock trading rules and recommendations. Create custom trading rules using technical indicators, get automated buy/sell recommendations, and track your portfolio performance.
 
@@ -97,8 +97,8 @@ A full-stack web application for managing stock trading rules and recommendation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/prediction-manager.git
-   cd prediction-manager
+   git clone https://github.com/YOUR_USERNAME/financier.git
+   cd financier
    ```
 
 2. **Install dependencies**
@@ -139,14 +139,14 @@ A full-stack web application for managing stock trading rules and recommendation
 
    Create local database:
    ```bash
-   npx wrangler d1 create prediction-manager-db
+   npx wrangler d1 create financier-db
    ```
 
    Run migrations:
    ```bash
-   npx wrangler d1 execute prediction-manager-db --file=./lib/db/migrations/0001_initial.sql --local
-   npx wrangler d1 execute prediction-manager-db --file=./lib/db/migrations/0002_add_rules.sql --local
-   npx wrangler d1 execute prediction-manager-db --file=./lib/db/migrations/0003_add_recommendations.sql --local
+   npx wrangler d1 execute financier-db --file=./lib/db/migrations/0001_initial.sql --local
+   npx wrangler d1 execute financier-db --file=./lib/db/migrations/0002_add_rules.sql --local
+   npx wrangler d1 execute financier-db --file=./lib/db/migrations/0003_add_recommendations.sql --local
    ```
 
 5. **Run development server**
@@ -164,7 +164,7 @@ A full-stack web application for managing stock trading rules and recommendation
 ## 📚 Project Structure
 
 ```
-prediction-manager/
+financier/
 ├── app/                          # Next.js App Router
 │   ├── (auth)/                   # Authentication pages
 │   │   ├── sign-in/
@@ -235,7 +235,7 @@ Configure in `wrangler.toml`:
 ```toml
 [[d1_databases]]
 binding = "DB"
-database_name = "prediction-manager-db"
+database_name = "financier-db"
 database_id = "your-database-id"
 ```
 
@@ -314,7 +314,7 @@ Quick deploy to Cloudflare Pages:
 npm run build
 
 # Deploy
-npx wrangler pages deploy .vercel/output/static --project-name=prediction-manager
+npx wrangler pages deploy .vercel/output/static --project-name=financier
 ```
 
 ## 💰 Cost
@@ -369,7 +369,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📧 Support
 
 For issues and questions:
-- Open an issue on [GitHub](https://github.com/YOUR_USERNAME/prediction-manager/issues)
+- Open an issue on [GitHub](https://github.com/YOUR_USERNAME/financier/issues)
 - Check the [Deployment Guide](./DEPLOYMENT.md)
 - Review [Cloudflare Docs](https://developers.cloudflare.com/)
 
