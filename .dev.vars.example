@@ -1,0 +1,12 @@
+# Development environment variables for Wrangler
+# Copy this to .dev.vars and fill in your values
+
+# To use production D1 database:
+# 1. Create production D1: wrangler d1 create prediction-manager-db-prod
+# 2. Run migrations on prod: wrangler d1 execute prediction-manager-db-prod --file=./lib/db/migrations/0001_initial.sql
+# 3. Update wrangler.toml [env.production] section with the database ID
+# 4. Run: wrangler dev --env production
+
+# Example .dev.vars (not used by default):
+# NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_live_...
+# CLERK_SECRET_KEY=sk_live_...
