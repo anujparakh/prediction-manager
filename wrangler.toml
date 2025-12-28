@@ -13,7 +13,7 @@ binding = "ASSETS"
 [[d1_databases]]
 binding = "DB"
 database_name = "financier-db"
-database_id = "b35f5c14-262f-477c-bf70-cc698cc355c0"
+database_id = "f625988d-d8da-453c-a8df-8b1e9434232a"
 
 # Production environment
 [env.production]
